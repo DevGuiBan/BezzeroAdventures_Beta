@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh6u4lofky8tv"]
+
+[ext_resource type="Script" uid="uid://vwghsj4gl00o" path="res://assets-mobs&entities/Door/door_component.gd" id="1_hpna2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_grpkd"]
+size = Vector2(10, 8)
+
+[node name="DoorComponent" type="Area2D"]
+script = ExtResource("1_hpna2")
+_teleport_position = Vector2(1600, 1280)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_grpkd")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkxbq68syfiuj"]
+
+[ext_resource type="Script" uid="uid://c18frij24gsc2" path="res://assets/Cow/cow.gd" id="1_uhp6h"]
+[ext_resource type="Texture2D" uid="uid://dqfnh85pi253" path="res://assets/Cow/Cow.png" id="2_55iv0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8xi0n"]
+size = Vector2(19, 6)
+
+[sub_resource type="Animation" id="Animation_a8x74"]
+resource_name = "walk_cow_left"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 0]
+}
+
+[sub_resource type="Animation" id="Animation_86tau"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ecruw"]
+_data = {
+&"RESET": SubResource("Animation_86tau"),
+&"walk_cow_left": SubResource("Animation_a8x74")
+}
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_uhp6h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 7)
+shape = SubResource("RectangleShape2D_8xi0n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_55iv0")
+hframes = 2
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ecruw")
+}
